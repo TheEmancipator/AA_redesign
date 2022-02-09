@@ -161,7 +161,7 @@ public class VRUI {
 
 		Video foundVideo = null ;
 		for ( Video video : this.videoList) {
-			if ( video.getTitle().equals(videoTitle) && video.isRented() == false ) {
+			if ( video.getTitle().equals(videoTitle) && !video.isRented()) {
 				foundVideo = video;
 				break ;
 			}
@@ -191,9 +191,8 @@ public class VRUI {
 			System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
 			int priceCode = scanner.nextInt();
 
-			Date registeredDate = new Date();
-			VHS VHS = new VHS(title, videoType, priceCode, registeredDate) ;
-			this.videoList.add(VHS) ;
+			Video video = createVideo(title, videoType, priceCode) ;
+			this.videoList.add(video) ;
 		}
 	}
 
