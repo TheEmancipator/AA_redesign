@@ -1,73 +1,49 @@
 import java.util.Date;
 
-public class Video {
-	private String title ;
+public abstract class Video {
+    public static final int REGULAR = 1;
+    public static final int NEW_RELEASE = 2;
+    protected Date registeredDate;
+    private String title;
+    private int priceCode;
+    private boolean rented;
 
-	private int priceCode ;
-	public static final int REGULAR = 1 ;
-	public static final int NEW_RELEASE =2 ;
+    public Video(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
 
-	private int videoType ;
-	public static final int VHS = 1 ;
-	public static final int CD = 2 ;
-	public static final int DVD = 3 ;
+    public abstract int getLateReturnPointPenalty();
 
-	private Date registeredDate ;
-	private boolean rented ;
+    public int getPriceCode() {
+        return priceCode;
+    }
 
-	public Video(String title, int videoType, int priceCode, Date registeredDate) {
-		this.setTitle(title) ;
-		this.setVideoType(videoType) ;
-		this.setPriceCode(priceCode) ;
-		this.registeredDate = registeredDate ;
-	}
+    public void setPriceCode(int priceCode) {
+        this.priceCode = priceCode;
+    }
 
-	public int getLateReturnPointPenalty() {
-		int pentalty = 0 ;
-		switch ( videoType ) {
-			case VHS: pentalty = 1 ; break ;
-			case CD: pentalty = 2 ; break ;
-			case DVD: pentalty = 3 ; break ;
-		}
-		return pentalty ;
-	}
-	public int getPriceCode() {
-		return priceCode;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setPriceCode(int priceCode) {
-		this.priceCode = priceCode;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public boolean isRented() {
+        return rented;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setRented(boolean rented) {
+        this.rented = rented;
+    }
 
-	public boolean isRented() {
-		return rented;
-	}
+    public Date getRegisteredDate() {
+        return registeredDate;
+    }
 
-	public void setRented(boolean rented) {
-		this.rented = rented;
-	}
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
 
-	public Date getRegisteredDate() {
-		return registeredDate;
-	}
-
-	public void setRegisteredDate(Date registeredDate) {
-		this.registeredDate = registeredDate;
-	}
-
-	public int getVideoType() {
-		return videoType;
-	}
-
-	public void setVideoType(int videoType) {
-		this.videoType = videoType;
-	}
 }

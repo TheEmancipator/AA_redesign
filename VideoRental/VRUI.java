@@ -8,7 +8,7 @@ public class VRUI {
 
 	private List<Customer> customers = new ArrayList<Customer>() ;
 
-	private List<Video> videos = new ArrayList<Video>() ;
+	private List<VHS> VHS = new ArrayList<VHS>() ;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI() ;
@@ -92,10 +92,10 @@ public class VRUI {
 		customers.add(james) ;
 		customers.add(brown) ;
 
-		Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-		Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-		videos.add(v1) ;
-		videos.add(v2) ;
+		VHS v1 = new VHS("v1", VHS.CD, VHS.REGULAR, new Date()) ;
+		VHS v2 = new VHS("v2", VHS.DVD, VHS.NEW_RELEASE, new Date()) ;
+		VHS.add(v1) ;
+		VHS.add(v2) ;
 
 		Rental r1 = new Rental(v1) ;
 		Rental r2 = new Rental(v2) ;
@@ -107,8 +107,8 @@ public class VRUI {
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		for ( Video video: videos ) {
-			System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
+		for ( VHS VHS : this.VHS) {
+			System.out.println("Price code: " + VHS.getPriceCode() +"\tTitle: " + VHS.getTitle()) ;
 		}
 		System.out.println("End of list");
 	}
@@ -163,18 +163,18 @@ public class VRUI {
 		System.out.println("Enter video title to rent: ") ;
 		String videoTitle = scanner.next() ;
 
-		Video foundVideo = null ;
-		for ( Video video: videos ) {
-			if ( video.getTitle().equals(videoTitle) && video.isRented() == false ) {
-				foundVideo = video ;
+		VHS foundVHS = null ;
+		for ( VHS VHS : this.VHS) {
+			if ( VHS.getTitle().equals(videoTitle) && VHS.isRented() == false ) {
+				foundVHS = VHS;
 				break ;
 			}
 		}
 
-		if ( foundVideo == null ) return ;
+		if ( foundVHS == null ) return ;
 
-		Rental rental = new Rental(foundVideo) ;
-		foundVideo.setRented(true);
+		Rental rental = new Rental(foundVHS) ;
+		foundVHS.setRented(true);
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		customerRentals.add(rental);
@@ -199,8 +199,8 @@ public class VRUI {
 			int priceCode = scanner.nextInt();
 
 			Date registeredDate = new Date();
-			Video video = new Video(title, videoType, priceCode, registeredDate) ;
-			videos.add(video) ;
+			VHS VHS = new VHS(title, videoType, priceCode, registeredDate) ;
+			this.VHS.add(VHS) ;
 		}
 	}
 

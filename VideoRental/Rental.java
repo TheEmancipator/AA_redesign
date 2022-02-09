@@ -1,23 +1,23 @@
 import java.util.Date;
 
 public class Rental {
-	private Video video ;
+	private VHS VHS;
 	private int status ; // 0 for Rented, 1 for Returned
 	private Date rentDate ;
 	private Date returnDate ;
 
-	public Rental(Video video) {
-		this.video = video ;
+	public Rental(VHS VHS) {
+		this.VHS = VHS;
 		status = 0 ;
 		rentDate = new Date() ;
 	}
 
-	public Video getVideo() {
-		return video;
+	public VHS getVideo() {
+		return VHS;
 	}
 
-	public void setVideo(Video video) {
-		this.video = video;
+	public void setVideo(VHS VHS) {
+		this.VHS = VHS;
 	}
 
 	public int getStatus() {
@@ -58,10 +58,10 @@ public class Rental {
 		}
 		if ( daysRented <= 2) return limit ;
 
-		switch ( video.getVideoType() ) {
-			case Video.VHS: limit = 5 ; break ;
-			case Video.CD: limit = 3 ; break ;
-			case Video.DVD: limit = 2 ; break ;
+		switch ( VHS.getVideoType() ) {
+			case VHS.VHS: limit = 5 ; break ;
+			case VHS.CD: limit = 3 ; break ;
+			case VHS.DVD: limit = 2 ; break ;
 		}
 		return limit ;
 	}
