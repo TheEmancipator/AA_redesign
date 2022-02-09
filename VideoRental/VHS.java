@@ -6,9 +6,7 @@ public class VHS extends Video {
 	public static final int VHS_LIMIT = 1;
 
 	public VHS(String title, int priceCode, Date registeredDate) {
-		super(registeredDate);
-		this.setTitle(title) ;
-		this.setPriceCode(priceCode) ;
+		super(title, priceCode, registeredDate);
 	}
 
 	@Override
