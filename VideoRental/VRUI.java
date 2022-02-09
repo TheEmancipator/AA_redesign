@@ -188,10 +188,7 @@ public class VRUI {
 		System.out.println("\t 7. Show customer report");
 		System.out.println("\t 8. Show customer and clear rentals");
 
-		int command = scanner.nextInt() ;
-
-		return command ;
-
+		return scanner.nextInt() ;
 	}
 	
 	private String scanCustomerName() {
