@@ -20,8 +20,8 @@ public class VRUI {
 				case 0: quit = true ; break ;
 				case 1: ui.listCustomers() ; break ;
 				case 2: ui.listVideos() ; break ;
-				case 3: ui.register("customer") ; break ;
-				case 4: ui.register("video") ; break ;
+				case 3: ui.registerCustomer() ; break ;
+				case 4: ui.registerVideo() ; break ;
 				case 5: ui.rentVideo() ; break ;
 				case 6: ui.returnVideo() ; break ;
 				case 7: ui.getCustomerReport() ; break;
@@ -160,20 +160,19 @@ public class VRUI {
 		foundCustomer.addRental(rental);
 	}
 
-	public void register(String object) {
-		if ( object.equals("customer") ) {
-			String name = scanCustomerName();
-			Customer customer = new Customer(name) ;
-			customers.add(customer) ;
-		}
-		else {
-			String title = scanVideoName();
-			int videoType = scanVideoType();
-			int priceCode = scanPriceCode();
+	public void registerCustomer() {
+		String name = scanCustomerName();
+		Customer customer = new Customer(name) ;
+		customers.add(customer) ;
+	}
 
-			Video video = createVideo(title, videoType, priceCode) ;
-			this.videoList.add(video) ;
-		}
+	public void registerVideo() {
+		String title = scanVideoName();
+		int videoType = scanVideoType();
+		int priceCode = scanPriceCode();
+
+		Video video = createVideo(title, videoType, priceCode) ;
+		this.videoList.add(video) ;
 	}
 
 	public int showCommand() {
