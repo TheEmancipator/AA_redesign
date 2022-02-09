@@ -173,19 +173,19 @@ public class VRUI {
 		System.out.println("Enter video title to rent: ") ;
 		String videoTitle = scanner.next() ;
 
-		VHS foundVHS = null ;
-		for ( VHS VHS : this.videoList) {
-			if ( VHS.getTitle().equals(videoTitle) && VHS.isRented() == false ) {
-				foundVHS = VHS;
+		Video foundVideo = null ;
+		for ( Video video : this.videoList) {
+			if ( video.getTitle().equals(videoTitle) && video.isRented() == false ) {
+				foundVideo = video;
 				break ;
 			}
 		}
 
-		if ( foundVHS == null ) return ;
+		if ( foundVideo == null ) return ;
 
-		Rental rental = new Rental(foundVHS) ;
-		foundVHS.setRented(true);
-		foundCustomer.add(rental);
+		Rental rental = new Rental(foundVideo);
+		foundVideo.setRented(true);
+		foundCustomer.addRental(rental);
 	}
 
 	public void register(String object) {
