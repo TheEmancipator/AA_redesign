@@ -22,13 +22,8 @@ public class Customer {
 		return rentals;
 	}
 
-	public void setRentals(List<Rental> rentals) {
-		this.rentals = rentals;
-	}
-
 	public void addRental(Rental rental) {
 		rentals.add(rental);
-
 	}
 
 	public String getReport() {
