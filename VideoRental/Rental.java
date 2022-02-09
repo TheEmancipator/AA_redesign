@@ -2,13 +2,13 @@ import java.util.Date;
 
 public class Rental {
 	private Video video;
-	private int status ; // 0 for Rented, 1 for Returned
+	private boolean isReturned;
 	private Date rentDate ;
 	private Date returnDate ;
 
 	public Rental(Video video) {
 		this.video = video;
-		status = 0 ;
+		isReturned = false ;
 		rentDate = new Date() ;
 	}
 
@@ -20,16 +20,15 @@ public class Rental {
 		this.video = video;
 	}
 
-	public int getStatus() {
-		return status;
+	public boolean isReturned() {
+		return isReturned;
 	}
 
 	public void returnVideo() {
-		if ( status == 1 ) {
-			this.status = 1;
-			returnDate = new Date() ;
-		}
+		this.isReturned = true;
+		returnDate = new Date();
 	}
+
 	public Date getRentDate() {
 		return rentDate;
 	}
@@ -48,14 +47,7 @@ public class Rental {
 
 	public int getDaysRentedLimit() {
 		int limit = 0 ;
-		int daysRented ;
-		if (getStatus() == 1) { // returned Video
-			long diff = returnDate.getTime() - rentDate.getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-		} else { // not yet returned
-			long diff = new Date().getTime() - rentDate.getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-		}
+		int daysRented = getDaysRented();
 		if ( daysRented <= 2) return limit ;
 
 		switch ( video.getVideoType() ) {
@@ -68,13 +60,14 @@ public class Rental {
 
 	int getDaysRented() {
 		int daysRented;
-		if (getStatus() == 1) { // returned Video
-			long diff = getReturnDate().getTime() - getRentDate().getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-		} else { // not yet returned
-			long diff = new Date().getTime() - getRentDate().getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		long diff;
+		if (isReturned()) {
+			diff = getReturnDate().getTime() - getRentDate().getTime();
+		} else {
+			diff = new Date().getTime() - getRentDate().getTime();
 		}
+		daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+
 		return daysRented;
 	}
 

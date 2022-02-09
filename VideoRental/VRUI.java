@@ -104,14 +104,13 @@ public class VRUI {
 
 	public Video createVideo(String title, int videoType, int priceCode) {
 		switch (videoType) {
-			case 1:
-				return new VHS(title, priceCode, new Date()) ;
 			case 2:
 				return new CD(title, priceCode, new Date()) ;
 			case 3:
 				return new DVD(title, priceCode, new Date()) ;
+			default:
+				return new VHS(title, priceCode, new Date()) ;
 		}
-
 	}
 
 	public void listVideos() {
