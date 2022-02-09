@@ -44,8 +44,12 @@ public abstract class Video {
         System.out.print("\tPrice Code: " + getPriceCode()) ;
     }
 
-    public boolean isReturning() {
+    public boolean isReturning(String videoTitle) {
         return getTitle().equals(videoTitle) && isRented();
+    }
+
+    public boolean isAvailableToRent(String videoTitle) {
+        return getTitle().equals(videoTitle) && !isRented();
     }
 
     void printVideoDesc() {

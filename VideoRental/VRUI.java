@@ -67,7 +67,7 @@ public class VRUI {
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
 			Video currVideo = rental.getVideo();
-			if ( currVideo.isReturning() ) {
+			if ( currVideo.isReturning(videoTitle) ) {
 				rental.returnVideo();
 				currVideo.setRented(false);
 				break ;
@@ -119,7 +119,7 @@ public class VRUI {
 	public void listCustomers() {
 		System.out.println("List of customers");
 		for ( Customer customer: customers ) {
-				customer.printVideo();
+			customer.printVideo();
 		}
 		System.out.println("End of list");
 	}
@@ -148,7 +148,7 @@ public class VRUI {
 
 		Video foundVideo = null ;
 		for ( Video video : this.videoList) {
-			if ( video.getTitle().equals(videoTitle) && !video.isRented()) {
+			if ( video.isAvailableToRent(videoTitle)) {
 				foundVideo = video;
 				break ;
 			}
