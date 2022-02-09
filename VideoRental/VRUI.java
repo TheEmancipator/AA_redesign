@@ -41,10 +41,7 @@ public class VRUI {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
-			foundCustomer.printCustomDesc();
-			for ( Rental rental: foundCustomer.getRentals() ) {
-				rental.getVideo().printVideoDesc();
-			}
+			foundCustomer.printVideo();
 		}
 	}
 
@@ -114,7 +111,7 @@ public class VRUI {
 		System.out.println("List of videos");
 
 		for ( Video video : this.videoList) {
-			video.printVideoDesc() ;
+			video.printVideo() ;
 		}
 		System.out.println("End of list");
 	}
@@ -122,10 +119,7 @@ public class VRUI {
 	public void listCustomers() {
 		System.out.println("List of customers");
 		for ( Customer customer: customers ) {
-			customer.printCustomDesc();
-			for ( Rental rental: customer.getRentals() ) {
-				rental.getVideo().printVideoDesc();
-			}
+				customer.printVideo();
 		}
 		System.out.println("End of list");
 	}
@@ -175,8 +169,8 @@ public class VRUI {
 		}
 		else {
 			String title = scanVideoName();
-			int videoType = scanVideoType().intValue();
-			int priceCode = scanPriceCode().intValue();
+			int videoType = scanVideoType();
+			int priceCode = scanPriceCode();
 
 			Video video = createVideo(title, videoType, priceCode) ;
 			this.videoList.add(video) ;
@@ -195,10 +189,7 @@ public class VRUI {
 		System.out.println("\t 7. Show customer report");
 		System.out.println("\t 8. Show customer and clear rentals");
 
-		int command = scanner.nextInt() ;
-
-		return command ;
-
+		return scanner.nextInt() ;
 	}
 	
 	private String scanCustomerName() {
