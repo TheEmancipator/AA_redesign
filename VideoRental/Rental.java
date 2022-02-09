@@ -48,7 +48,7 @@ public class Rental {
 	public int getDaysRentedLimit(int daysRented) {
 		int limit = 0 ;
 		if ( daysRented > 2)
-			limit = video.getRentLimit()
+			limit = video.getRentLimit();
 		return limit ;
 	}
 
