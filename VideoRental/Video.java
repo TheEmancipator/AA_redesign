@@ -19,6 +19,8 @@ public abstract class Video {
 
     public abstract int getLateReturnPointPenalty();
 
+    public abstract int getRentLimit();
+
     public int getPriceCode() {
         return priceCode;
     }

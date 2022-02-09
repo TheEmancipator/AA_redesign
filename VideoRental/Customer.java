@@ -48,7 +48,7 @@ public class Customer {
 			if ((rental.getVideo().getPriceCode() == VHS.NEW_RELEASE) )
 				eachPoint++;
 
-			if ( daysRented > rental.getDaysRentedLimit() )
+			if ( daysRented > rental.getDaysRentedLimit(daysRented) )
 				eachPoint -= Math.min(eachPoint, rental.getVideo().getLateReturnPointPenalty()) ;
 
 			result += "\t" + rental.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge

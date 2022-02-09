@@ -3,6 +3,7 @@ import java.util.Date;
 public class DVD extends Video {
 
 	public static final int DVD_PENALTY = 3;
+	public static final int DVD_LIMIT = 3;
 
 	public DVD(String title, int priceCode, Date registeredDate) {
 		super(registeredDate);
@@ -15,4 +16,6 @@ public class DVD extends Video {
 		return DVD_PENALTY;
 	}
 
+	@Override
+	public int getRentLimit() { return DVD_LIMIT; }
 }

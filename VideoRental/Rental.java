@@ -45,16 +45,10 @@ public class Rental {
 		this.returnDate = returnDate;
 	}
 
-	public int getDaysRentedLimit() {
+	public int getDaysRentedLimit(int daysRented) {
 		int limit = 0 ;
-		int daysRented = getDaysRented();
-		if ( daysRented <= 2) return limit ;
-
-		switch ( video.getVideoType() ) {
-			case VHS.VHS: limit = 5 ; break ;
-			case VHS.CD: limit = 3 ; break ;
-			case VHS.DVD: limit = 2 ; break ;
-		}
+		if ( daysRented > 2)
+			limit = video.getRentLimit()
 		return limit ;
 	}
 
