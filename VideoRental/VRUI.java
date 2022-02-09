@@ -41,11 +41,9 @@ public class VRUI {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
-			System.out.println("Name: " + foundCustomer.getName() +
-					"\tRentals: " + foundCustomer.getRentals().size()) ;
+			foundCustomer.printCustomDesc();
 			for ( Rental rental: foundCustomer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				rental.getVideo().printVideoDesc();
 			}
 		}
 	}
@@ -71,9 +69,10 @@ public class VRUI {
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
-			if ( rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
+			Video currVideo = rental.getVideo();
+			if ( currVideo.isReturning() ) {
 				rental.returnVideo();
-				rental.getVideo().setRented(false);
+				currVideo.setRented(false);
 				break ;
 			}
 		}
@@ -115,7 +114,7 @@ public class VRUI {
 		System.out.println("List of videos");
 
 		for ( Video video : this.videoList) {
-			System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
+			video.printVideoDesc() ;
 		}
 		System.out.println("End of list");
 	}
@@ -123,11 +122,9 @@ public class VRUI {
 	public void listCustomers() {
 		System.out.println("List of customers");
 		for ( Customer customer: customers ) {
-			System.out.println("Name: " + customer.getName() +
-					"\tRentals: " + customer.getRentals().size()) ;
+			customer.printCustomDesc();
 			for ( Rental rental: customer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				rental.getVideo().printVideoDesc();
 			}
 		}
 		System.out.println("End of list");
@@ -178,8 +175,8 @@ public class VRUI {
 		}
 		else {
 			String title = scanVideoName();
-			int videoType = scanVideoType();
-			int priceCode = scanPriceCode();
+			int videoType = scanVideoType().intValue();
+			int priceCode = scanPriceCode().intValue();
 
 			Video video = createVideo(title, videoType, priceCode) ;
 			this.videoList.add(video) ;
@@ -214,13 +211,13 @@ public class VRUI {
 		return scanner.next();
 	}
 	
-	private Integer scanVideoType() {
+	private int scanVideoType() {
 		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
-		return scanner.nextInt();
+		return scanner.nextInt().intValue();
 	}
 	
-	private Integer scanPriceCode() {
+	private int scanPriceCode() {
 		System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
-		return scanner.nextInt();		
+		return scanner.nextInt().intValue();
 	}		
 }

@@ -38,4 +38,13 @@ public abstract class Video {
     public void setRented(boolean rented) {
         this.rented = rented;
     }
+
+    public boolean isReturning() {
+        return getTitle().equals(videoTitle) && isRented();
+    }
+
+    void printVideoDesc() {
+        System.out.print("\tTitle: " + getTitle() + " ") ;
+        System.out.print("\tPrice Code: " + getPriceCode()) ;
+    }
 }
