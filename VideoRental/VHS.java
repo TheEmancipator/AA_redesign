@@ -12,12 +12,8 @@ public class VHS extends Video {
 	}
 
 	@Override
-	public int getLateReturnPointPenalty() {
-		return VHS_PENALTY;
-	}
+	public int getLateReturnPointPenalty() { return VHS_PENALTY; }
 
 	@Override
-	public int getRentLimit() {
-		return VHS_LIMIT;
-	}
+	public int getRentLimit() { return VHS_LIMIT; }
 }
