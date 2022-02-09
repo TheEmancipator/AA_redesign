@@ -8,7 +8,7 @@ public class VRUI {
 
 	private List<Customer> customers = new ArrayList<Customer>() ;
 
-	private List<VHS> VHS = new ArrayList<VHS>() ;
+	private List<Video> videoList = new ArrayList<>() ;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI() ;
@@ -92,10 +92,11 @@ public class VRUI {
 		customers.add(james) ;
 		customers.add(brown) ;
 
-		VHS v1 = new VHS("v1", VHS.CD, VHS.REGULAR, new Date()) ;
-		VHS v2 = new VHS("v2", VHS.DVD, VHS.NEW_RELEASE, new Date()) ;
-		VHS.add(v1) ;
-		VHS.add(v2) ;
+		Video v1 = createVideo("v1", Video.VHS, Video.REGULAR);
+		Video v2 = createVideo("v2", Video.DVD, Video.NEW_RELEASE);
+
+		videoList.add(v1) ;
+		videoList.add(v2) ;
 
 		Rental r1 = new Rental(v1) ;
 		Rental r2 = new Rental(v2) ;
@@ -104,11 +105,23 @@ public class VRUI {
 		james.addRental(r2) ;
 	}
 
+	public Video createVideo(String title, int videoType, int priceCode) {
+		switch (videoType) {
+			case 1:
+				return new VHS(title, priceCode, new Date()) ;
+			case 2:
+				return new CD(title, priceCode, new Date()) ;
+			case 3:
+				return new DVD(title, priceCode, new Date()) ;
+		}
+
+	}
+
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		for ( VHS VHS : this.VHS) {
-			System.out.println("Price code: " + VHS.getPriceCode() +"\tTitle: " + VHS.getTitle()) ;
+		for ( Video video : this.videoList) {
+			System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
 		}
 		System.out.println("End of list");
 	}
@@ -164,7 +177,7 @@ public class VRUI {
 		String videoTitle = scanner.next() ;
 
 		VHS foundVHS = null ;
-		for ( VHS VHS : this.VHS) {
+		for ( VHS VHS : this.videoList) {
 			if ( VHS.getTitle().equals(videoTitle) && VHS.isRented() == false ) {
 				foundVHS = VHS;
 				break ;
@@ -200,7 +213,7 @@ public class VRUI {
 
 			Date registeredDate = new Date();
 			VHS VHS = new VHS(title, videoType, priceCode, registeredDate) ;
-			this.VHS.add(VHS) ;
+			this.videoList.add(VHS) ;
 		}
 	}
 

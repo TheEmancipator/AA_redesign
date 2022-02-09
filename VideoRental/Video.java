@@ -1,6 +1,11 @@
 import java.util.Date;
 
 public abstract class Video {
+    public static final int VHS = 1;
+    public static final int DVD = 2;
+    public static final int CD = 3;
+    public static final int REGULAR = 1;
+    public static final int NEW_RELEASE = 2;
 
     protected Date registeredDate;
     private String title;
