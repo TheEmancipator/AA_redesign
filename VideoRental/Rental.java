@@ -65,4 +65,30 @@ public class Rental {
 		}
 		return limit ;
 	}
+
+	int getDaysRented() {
+		int daysRented;
+		if (getStatus() == 1) { // returned Video
+			long diff = getReturnDate().getTime() - getRentDate().getTime();
+			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		} else { // not yet returned
+			long diff = new Date().getTime() - getRentDate().getTime();
+			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		}
+		return daysRented;
+	}
+
+	double getRentalCharge(double charge, int daysRented) {
+		switch (getVideo().getPriceCode()) {
+		case PriceCode.REGULAR:
+			charge += 2;
+			if (daysRented > 2)
+				charge += (daysRented - 2) * 1.5;
+			break;
+		case PriceCode.NEW_RELEASE:
+			charge = daysRented * 3;
+			break;
+		}
+		return charge;
+	}
 }

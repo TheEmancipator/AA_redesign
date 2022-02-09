@@ -1,8 +1,7 @@
 import java.util.Date;
 
 public abstract class Video {
-    public static final int REGULAR = 1;
-    public static final int NEW_RELEASE = 2;
+
     protected Date registeredDate;
     private String title;
     private int priceCode;
