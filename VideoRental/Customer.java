@@ -71,4 +71,11 @@ public class Customer {
 		return result ;
 	}
 
+	public void printVideo(){
+		System.out.println("Name: " + getName() + "\tRentals: " + getRentals().size()) ;
+		for ( Rental rental: getRentals() ) {
+			rental.printVideo();
+		}
+	}
+
 }

@@ -38,4 +38,9 @@ public abstract class Video {
     public void setRented(boolean rented) {
         this.rented = rented;
     }
+
+    void printVideo() {
+        System.out.print("\tTitle: " + getTitle() + " ") ;
+        System.out.print("\tPrice Code: " + getPriceCode()) ;
+    }
 }
