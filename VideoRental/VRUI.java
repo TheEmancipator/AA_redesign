@@ -34,8 +34,7 @@ public class VRUI {
 	}
 
 	public void clearRentals() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
+		String customerName = scanCustomerName();
 
 		Customer foundCustomer = findCustomer(customerName);
 
@@ -63,14 +62,12 @@ public class VRUI {
 	}
 
 	public void returnVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
+		String customerName = scanCustomerName();
 
 		Customer foundCustomer = findCustomer(customerName);
 		if ( foundCustomer == null ) return ;
 
-		System.out.println("Enter video title to return: ") ;
-		String videoTitle = scanner.next() ;
+		String videoTitle = scanVideoName();
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
@@ -137,8 +134,7 @@ public class VRUI {
 	}
 
 	public void getCustomerReport() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
+		String customerName = scanCustomerName();
 
 		Customer foundCustomer = findCustomer(customerName);
 
@@ -151,15 +147,13 @@ public class VRUI {
 	}
 
 	public void rentVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
+		String customerName = scanCustomerName();
 
 		Customer foundCustomer = findCustomer(customerName);
 
 		if ( foundCustomer == null ) return ;
 
-		System.out.println("Enter video title to rent: ") ;
-		String videoTitle = scanner.next() ;
+		String videoTitle = scanVideoName();
 
 		Video foundVideo = null ;
 		for ( Video video : this.videoList) {
@@ -178,20 +172,14 @@ public class VRUI {
 
 	public void register(String object) {
 		if ( object.equals("customer") ) {
-			System.out.println("Enter customer name: ") ;
-			String name = scanner.next();
+			String name = scanCustomerName();
 			Customer customer = new Customer(name) ;
 			customers.add(customer) ;
 		}
 		else {
-			System.out.println("Enter video title to register: ") ;
-			String title = scanner.next() ;
-
-			System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
-			int videoType = scanner.nextInt();
-
-			System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
-			int priceCode = scanner.nextInt();
+			String title = scanVideoName();
+			int videoType = scanVideoType();
+			int priceCode = scanPriceCode();
 
 			Video video = createVideo(title, videoType, priceCode) ;
 			this.videoList.add(video) ;
@@ -215,4 +203,24 @@ public class VRUI {
 		return command ;
 
 	}
+	
+	private String scanCustomerName() {
+		System.out.println("Enter customer name: ");
+		return scanner.next();
+	}
+	
+	private String scanVideoName() {
+		System.out.println("Enter video title: ") ;
+		return scanner.next();
+	}
+	
+	private Integer scanVideoType() {
+		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
+		return scanner.nextInt();
+	}
+	
+	private Integer scanPriceCode() {
+		System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
+		return scanner.nextInt();		
+	}		
 }
